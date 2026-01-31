@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Reliance</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0B1F3A; /* Deep navy */
+            color: #FFFFFF; /* White */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0B1F3A, #1E3A5F);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid #1ED3B5;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .about-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #3B82F6;
+            color: #FFFFFF;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .about-btn:hover {
+            background: #1ED3B5;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #1E3A5F;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid #1ED3B5;
+        }
+        .close {
+            color: #B0B7BF;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #FFFFFF;
+        }
+        h1 {
+            color: #FFFFFF;
+            margin: 0;
+            font-size: 3em;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            color: #B0B7BF; /* Light gray */
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .form-container {
+            background: linear-gradient(135deg, #1E3A5F, #0B1F3A);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #1ED3B5;
+        }
+        .form-container h2 {
+            color: #1ED3B5; /* Teal */
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        .description {
+            color: #B0B7BF;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.1em;
+            color: #FFFFFF;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #3B82F6; /* Blue */
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+            background: #0B1F3A;
+            color: #FFFFFF;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #1ED3B5;
+            outline: none;
+            box-shadow: 0 0 10px rgba(30, 211, 181, 0.3);
+        }
+        button {
+            background: linear-gradient(45deg, #3B82F6, #1ED3B5);
+            color: #FFFFFF;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+            background: linear-gradient(45deg, #1ED3B5, #3B82F6);
+        }
+        footer {
+            background: #0B1F3A;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #1ED3B5;
+            color: #B0B7BF;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="about-btn" onclick="openModal()">About</button>
+        <h1>Net Reliance</h1>
+        <p class="subtitle">Network Security Analysis Tool</p>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>Scan your domain or IP address</h2>
+            <p class="description">
+Reliable network scanning platform delivering accurate insights, secure analysis, and dependable results for modern infrastructure and cybersecurity needs            </p>
+            <form method="POST" action="/scan">
+                <label for="target">Target Domain or IP Address:</label>
+                <input type="text" id="target" name="target" required placeholder="e.g., example.com or 192.168.1.1">
+                <button type="submit">Start Secure Scan</button>
+            </form>
+        </div>
+    </main>
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>About Net Reliance Scanner</h2>
+            <p><strong>Name:</strong> Net Reliance Scanner</p>
+            <p><strong>Explanation:</strong> This is a comprehensive network security analysis tool designed for cybersecurity professionals and enthusiasts. It performs various scans including ping tests, port scanning, DNS lookups, traceroutes, SSL certificate checks, HTTP header analysis, and risk assessments to help identify potential security vulnerabilities in network configurations.</p>
+            <p><strong>Features:</strong></p>
+            <ul style="text-align: left; color: #B0B7BF;">
+                <li>Real-time connectivity testing</li>
+                <li>Comprehensive port analysis</li>
+                <li>DNS resolution and routing traces</li>
+                <li>SSL/TLS certificate validation</li>
+                <li>HTTP response header inspection</li>
+                <li>Automated security risk scoring</li>
+                <li>Exportable scan results</li>
+            </ul>
+            <p><strong>Version:</strong> 1.0 | <strong>Developed for:</strong> Educational and Professional Use| <strong>Developed by: Manikandan Ramesh</strong></p>
+        </div>
+    </div>
+    <footer>
+        <p>Enterprise-grade cybersecurity scanning | Secure & Confidential |</p>
+        <p>App developed by: Manikandan Ramesh</p>
+    </footer>
+    <script>
+        function openModal() {
+            document.getElementById('aboutModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('aboutModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('aboutModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

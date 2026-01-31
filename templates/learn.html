@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Net Reliance Scanner</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0B1F3A;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1E3A5F, #0B1F3A);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #1ED3B5;
+        }
+        h1 {
+            color: #1ED3B5;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3B82F6;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #B0B7BF;
+            margin-bottom: 15px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #3B82F6, #1ED3B5);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .code-example {
+            background: #0B1F3A;
+            border: 1px solid #3B82F6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            color: #B0B7BF;
+        }
+        ul {
+            color: #B0B7BF;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <div>{{ content|safe }}</div>
+        <a href="#" onclick="history.back()" class="back-btn">Back to Results</a>
+    </div>
+</body>
+</html>

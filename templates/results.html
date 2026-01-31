@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results - Net Reliance</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0B1F3A; /* Deep navy */
+            color: #FFFFFF; /* White */
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #0B1F3A, #1E3A5F);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #1ED3B5;
+        }
+        h1 {
+            color: #1ED3B5; /* Teal */
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .target-info {
+            color: #B0B7BF;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        .section {
+            background: linear-gradient(135deg, #1E3A5F, #0B1F3A);
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-left: 4px solid #3B82F6; /* Blue */
+        }
+        h2 {
+            color: #1ED3B5;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 1px solid #3B82F6;
+            padding-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #FFFFFF;
+        }
+        pre {
+            background: #0B1F3A;
+            border: 1px solid #3B82F6;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #B0B7BF;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .risk-high {
+            color: #FF6B6B;
+            font-weight: bold;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #FF6B6B;
+        }
+        .risk-medium {
+            color: #FFD93D;
+            font-weight: bold;
+            background: rgba(255, 217, 61, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #FFD93D;
+        }
+        .risk-low {
+            color: #6BCF7F;
+            font-weight: bold;
+            background: rgba(107, 207, 127, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #6BCF7F;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+        a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #3B82F6, #1ED3B5);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .learn-btn {
+            background: #3B82F6;
+            color: #FFFFFF;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+        .learn-btn:hover {
+            background: #1ED3B5;
+        }
+        .learn-link {
+            background: #3B82F6;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .learn-link:hover {
+            background: #1ED3B5;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #1E3A5F;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid #1ED3B5;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close {
+            color: #B0B7BF;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Net Reliance -- Scan - Results</h1>
+        <p class="target-info">Analysis for: {{ target }}</p>
+    </div>
+    
+    <div class="section">
+        <h2>Connectivity Test <a href="/learn/connectivity" class="learn-link">Learn More</a></h2> 
+        <pre>{{ ping }}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>DNS Resolution <a href="/learn/dns" class="learn-link">Learn More</a></h2>
+        <p>{{ ip }}</p>
+    </div>
+    
+    <div class="section">
+        <h2>Port Analysis <a href="/learn/ports" class="learn-link">Learn More</a></h2>
+        <pre>{{ ports }}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>Security Assessment <a href="/learn/risk" class="learn-link">Learn More</a></h2>
+        <p>Risk Score: {{ score }} | Level: <span class="risk-{{ level.lower() }}">{{ level }}</span></p>
+    </div>
+    
+    <div class="section">
+        <h2>Network Trace <a href="/learn/trace" class="learn-link">Learn More</a></h2>
+        <pre>{{ traceroute }}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>SSL/TLS Certificate <a href="/learn/ssl" class="learn-link">Learn More</a></h2>
+        <pre>{{ ssl_info }}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>HTTP Response Headers <a href="/learn/headers" class="learn-link">Learn More</a></h2>
+        <pre>{{ headers }}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>Service Banner (Port 80) <a href="/learn/banner" class="learn-link">Learn More</a></h2>
+        <pre>{{ banner }}</pre>
+    </div>
+    
+    <div class="back-link">
+        <a href="/">Scan other domain or IP address</a>
+    </div>
+</body>
+</html>
